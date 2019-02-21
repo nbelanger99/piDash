@@ -31,7 +31,7 @@ voltMeter = Label(root, font = "Helvetica 36", background=bgrndColor, foreground
 stateCharge = Label(root, font = "Helvetica 48", background=bgrndColor, foreground=nrmlTextColor)
 errLabel = Label(root, font = "Helvetica 16", background=bgrndColor, foreground=errTextColor)
 lowAvgHigh = Label(root, font = "Helvetica 12", background=bgrndColor, foreground=nrmlTextColor)
-tagLabel = Label(root, text = tagMessages[random.randint(0,len(tagMessages))], font = "Helvetica 12", background=bgrndColor, foreground=nrmlTextColor)
+tagLabel = Label(root, text = tagMessages[random.randint(0,len(tagMessages)-1)], font = "Helvetica 12", background=bgrndColor, foreground=nrmlTextColor)
 speedo.grid(row=2, column=0, columnspan=3, sticky=N)
 voltMeter.grid(row=1, column=0)
 stateCharge.grid(row=0, column=0)
