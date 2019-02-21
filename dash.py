@@ -44,7 +44,7 @@ root.rowconfigure(2, weight=1)
 
 #initializing log
 stamp = datetime.datetime.now().isoformat()
-log = open("/home/pi/piDash/"+stamp+".csv", "w")
+log = open("/home/pi/piDash2/"+stamp+".csv", "w")
 logger = csv.writer(log, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 header = ["Time", "RPM", "Speed", "Motor Current", "Pack Voltage", "Controller Temperature", "Motor Temperature", "Lowest Cell Voltage", "Low Cell Voltage ID", "Average Cell Voltage", "Highest Cell Voltage", "High Cell Voltage ID", "State of Charge", "Errors"]
 
