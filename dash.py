@@ -53,10 +53,13 @@ for i in range(1,25):
 
 for i in range(1,25):
 	header.append("R" + str(i))
+for i in range (1, 25):
+	header.append("E" + str(i))
 
 logger.writerow(header)
 
 start = time.time()
+tMinusOne = [0]
 
 #Defining a bus and message object
 bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
@@ -65,6 +68,7 @@ msg = Message
 # Cell Voltage and Resistance list and log row list
 cellV = [0] * 24
 cellR = [0] * 24
+cellE = [0] * 24
 
 #An object for anything that is to be measured through the can bus
 class reading():
@@ -94,11 +98,16 @@ def update():
 	global msg
 	global logRow
 	global cellV
+	global tMinusOne
 
 	logRow = []
 
 	#Reading canbus data into global message object
 	msg = bus.recv(timeout=5)
+
+	#time variables
+	t = time.time() = start
+	dt = t - tMinusOne
 
 	#Kelly errors in english
 	errList1 = ["Throttle Error", "Over Temp", "Internal Voltage", "Motor Stall", " ", "Low Voltage", "Over Voltage", "Identification Error"]
@@ -158,10 +167,11 @@ def update():
 
 	#Parsing orion3
 	cellV[orion3.data[0]] = (orion3.data[1] * 256 + orion3.data[2]) / 10000
-	cellR[orion3.data[0]] = (orion3.data[3] * 256 + orion3.data[4]) / 10000
+	cellR[orion3.data[0]] = (orion3.data[3] * 256 + orion3.data[4]) / 100
+	cellE[orion3.data[0]] += cellV[orion3.data[0] * motrCurrent * dt
 
 	#Appending data to global row list
-	logRow.append(time.time()- start)
+	logRow.append(t)
 	logRow.append(rpm)
 	logRow.append(speed)
 	logRow.append(motorCurrent)
@@ -178,12 +188,14 @@ def update():
 
 	for x in range (0, 24):
 		logRow.append(cellV[x])
-
 	for x in range (0, 24):
 		logRow.append(cellR[x])
+	for x in range (0, 24):
+		logRow.append(cellE[x])
 
 	logger.writerow(logRow)
 
+	tMinusOne = t
 	#Setting the function to be called in tkinter event loop
 	root.after(1, update)
 
