@@ -59,7 +59,7 @@ for i in range (1, 25):
 logger.writerow(header)
 
 start = time.time()
-tMinusOne = [0]
+tMinusOne = 0
 
 #Defining a bus and message object
 bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
@@ -167,7 +167,7 @@ def update():
 	#Parsing orion3
 	cellV[orion3.data[0]] = (orion3.data[1] * 256 + orion3.data[2]) / 10000
 	cellR[orion3.data[0]] = (orion3.data[3] * 256 + orion3.data[4]) / 100
-	cellE[orion3.data[0]] += cellV[orion3.data[0]] * motrCurrent * dt
+	cellE[orion3.data[0]] += cellV[orion3.data[0]] * motorCurrent * dt
 
 	#Appending data to global row list
 	logRow.append(t)
