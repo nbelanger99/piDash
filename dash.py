@@ -106,7 +106,7 @@ def update():
 	msg = bus.recv(timeout=5)
 
 	#time variables
-	t = time.time() = start
+	t = time.time() - start
 	dt = t - tMinusOne
 
 	#Kelly errors in english
