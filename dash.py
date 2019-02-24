@@ -110,7 +110,7 @@ def update():
 
 	#Kelly errors in english
 	errList1 = ["Throttle Error", "Over Temp", "Internal Voltage", "Motor Stall", " ", "Low Voltage", "Over Voltage", "Identification Error"]
-	errList2 = ["H.G. Sensor", "Motor over-temp", " ", " ", "Angle Sensor error", "Throttle Short", "Internal Rst"]
+	errList2 = ["H.G. Sensor", "Motor over-temp", " ", " ", "Angle Sensor error", "Throttle Short", "Internal Rst", "Wanna Sprite Cranberry?"]
 
 	# Checking for readings
 	kelly1.checkFor()
