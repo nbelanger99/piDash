@@ -171,7 +171,7 @@ def update():
 	cellE[orion3.data[0]] += cellV[orion3.data[0] * motrCurrent * dt
 
 	#Appending data to global row list
-	logRow.append(t)
+	#logRow.append(t)
 	logRow.append(rpm)
 	logRow.append(speed)
 	logRow.append(motorCurrent)
