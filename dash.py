@@ -96,7 +96,6 @@ def update():
 
 	#global variabeles
 	global msg
-	global logRow
 	global cellV
 	global tMinusOne
 
@@ -106,7 +105,7 @@ def update():
 	msg = bus.recv(timeout=5)
 
 	#time variables
-	t = time.time() = start
+	t = time.time() - start
 	dt = t - tMinusOne
 
 	#Kelly errors in english
@@ -168,7 +167,7 @@ def update():
 	#Parsing orion3
 	cellV[orion3.data[0]] = (orion3.data[1] * 256 + orion3.data[2]) / 10000
 	cellR[orion3.data[0]] = (orion3.data[3] * 256 + orion3.data[4]) / 100
-	cellE[orion3.data[0]] += cellV[orion3.data[0] * motrCurrent * dt
+	cellE[orion3.data[0]] += cellV[orion3.data[0]] * motrCurrent * dt
 
 	#Appending data to global row list
 	logRow.append(t)
