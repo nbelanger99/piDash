@@ -102,7 +102,7 @@ def update():
 	logRow = []
 
 	#Reading canbus data into global message object
-	msg = bus.recv(timeout=5)
+	msg = bus.recv(timeout=None)
 
 	#time variables
 	t = time.time() - start
